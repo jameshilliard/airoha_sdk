@@ -1,0 +1,21 @@
+﻿#ifndef QP_ANA_REG
+#define QP_ANA_REG
+
+#define _RG_QP_RX_DAC_EN 0x0
+#define _RG_QP_RXAFE_RESERVE 0x4
+#define _RG_QP_CDR_LPF_BOT_LIM 0x8
+#define _RG_QP_CDR_LPF_MJV_LIM 0xc
+#define _RG_QP_CDR_LPF_TOP_LIM 0x10
+#define _RG_QP_CDR_LPF_SETVALUE 0x14
+#define _RG_QP_CDR_PR_CKREF_DIV1 0x18
+#define _RG_QP_CDR_PR_KBAND_DIV_PCIE 0x1c
+#define _RG_QP_CDR_FORCE_IBANDLPF_R_OFF 0x20
+#define _RG_QP_RX_D0_HS_RESERVED 0x24
+#define _RG_QP_TX_MODE_16B_EN 0x28
+#define _RG_QP_RXLBTX_EN 0x2c
+#define _RG_QP_BGR_EN 0x30
+#define _RG_PCIE_CLKDRV_IMPSEL 0x34
+#define _RG_QP_TDC_FT_CK_EN 0x38
+#define _RG_QP_PLL_IPLL_DIG_PWR_SEL 0x3c
+#define _RG_QP_PLL_SDM_ORD 0x40
+#endif

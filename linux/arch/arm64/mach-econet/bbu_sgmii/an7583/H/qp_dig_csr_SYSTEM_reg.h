@@ -1,0 +1,21 @@
+﻿#ifndef QP_DIG_CSR_SYSTEM_REG
+#define QP_DIG_CSR_SYSTEM_REG
+
+#define _QP_CK_RST_CTRL_0 0x300
+#define _QP_CK_RST_CTRL_1 0x304
+#define _QP_CK_RST_CTRL_2 0x308
+#define _QP_CK_RST_CTRL_3 0x30c
+#define _QP_CK_RST_CTRL_4 0x310
+#define _QP_SYS_CTRL_0 0x314
+#define _QP_CK_RST_CTRL_5 0x31c
+#define _QP_CK_RST_CTRL_6 0x320
+#define _QP_DIG_MODE_CTRL_0 0x324
+#define _QP_DIG_CK_CTRL_0 0x328
+#define _QP_DIG_AFIFO_CTRL_0 0x32c
+#define _QP_DIG_MODE_CTRL_1 0x330
+#define _QP_DIG_AFIFO_CTRL_1 0x334
+#define _QP_DIG_AFIFO_CTRL_2 0x338
+#define _QP_DIG_EFUSE_CTRL 0x33c
+#define _QP_CK_RST_CTRL_7 0x340
+#define _QP_CK_RST_CTRL_8 0x344
+#endif

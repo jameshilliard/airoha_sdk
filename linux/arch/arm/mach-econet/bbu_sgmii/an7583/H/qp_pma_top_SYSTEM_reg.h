@@ -1,0 +1,52 @@
+﻿#ifndef QP_PMA_TOP_SYSTEM_REG
+#define QP_PMA_TOP_SYSTEM_REG
+
+#define _SYS_CTRL_0 0x500
+#define _SYS_CTRL_1 0x504
+#define _QP_SYS_0 0x508
+#define _FT_CTRL_0 0x50c
+#define _FT_CTRL_1 0x510
+#define _FT_CTRL_2 0x514
+#define _FT_CTRL_3 0x518
+#define _FT_CTRL_4 0x51c
+#define _FT_CTRL_5 0x520
+#define _FT_CTRL_6 0x524
+#define _FT_CTRL_7 0x528
+#define _FT_CTRL_8 0x52c
+#define _FT_CTRL_9 0x530
+#define _FT_CTRL_10 0x534
+#define _FT_CTRL_11 0x538
+#define _FT_CTRL_12 0x53c
+#define _FT_CTRL_13 0x540
+#define _FT_CTRL_14 0x544
+#define _FT_CTRL_15 0x548
+#define _FT_CTRL_16 0x54c
+#define _FT_CTRL_17 0x550
+#define _FT_CTRL_18 0x554
+#define _FT_CTRL_19 0x558
+#define _FT_CTRL_20 0x55c
+#define _FT_CTRL_21 0x560
+#define _FT_CTRL_22 0x564
+#define _FT_CTRL_23 0x568
+#define _FT_CTRL_24 0x56c
+#define _FT_CTRL_25 0x570
+#define _FT_CTRL_26 0x574
+#define _FT_CTRL_27 0x578
+#define _FT_CTRL_28 0x57c
+#define _FT_CTRL_29 0x580
+#define _FT_CTRL_30 0x584
+#define _FT_CTRL_31 0x588
+#define _FT_CTRL_32 0x58c
+#define _FT_CTRL_33 0x590
+#define _FT_CTRL_34 0x594
+#define _FT_CTRL_35 0x598
+#define _FT_STATUS_0 0x5a0
+#define _FT_STATUS_1 0x5a4
+#define _FT_STATUS_2 0x5a8
+#define _FT_STATUS_3 0x5ac
+#define _FT_STATUS_4 0x5b0
+#define _FT_STATUS_5 0x5b4
+#define _FT_STATUS_6 0x5b8
+#define _FT_STATUS_7 0x5bc
+#define _FT_STATUS_8 0x5c0
+#endif

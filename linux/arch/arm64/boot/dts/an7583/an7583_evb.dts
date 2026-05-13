@@ -1,0 +1,119 @@
+﻿
+
+#include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+
+/dts-v1/;
+
+#include "an7583.dtsi"
+#include "an7583_led_button.dtsi"
+#include "an7583_partion.dtsi"
+
+/ {
+	compatible = "airoha,an7583";
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	gpio0: gpio@1fbf0200 {
+		compatible = "airoha,airoha-gpio";
+		gpio_base = <0>;
+		reg = <0x0 0x1fbf0204 0x0 0x4>,
+		      <0x0 0x1fbf0200 0x0 0x4>,
+		      <0x0 0x1fbf0220 0x0 0x4>,
+		      <0x0 0x1fbf0214 0x0 0x4>;
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
+	gpio1: gpio@1fbf0270 {
+		compatible = "airoha,airoha-gpio";
+		gpio_base = <32>;
+		reg = <0x0 0x1fbf0270 0x0 0x4>,
+		      <0x0 0x1fbf0260 0x0 0x4>,
+		      <0x0 0x1fbf0264 0x0 0x4>,
+		      <0x0 0x1fbf0278 0x0 0x4>;
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
+	
+	pwm: pwm@1fbf0234{
+		compatible = "airoha,airoha-pwm";
+		reg = <0x0 0x1fbf0234 0x0 0x20>,
+		      <0x0 0x1fbf0268 0x0 0x4>,
+		      <0x0 0x1fbf0298 0x0 0x24>;
+	};
+	
+	gpio@1fbf0224 {
+		compatible = "econet,ecnt-gpio";
+		reg =
+			/* LED Display*/
+			<0x0 0x1fbf0218 0x0 0x08>,
+			/* SGPIO */
+			<0x0 0x1fbf0224 0x0 0x10>,
+			/* flash mode*/
+			<0x0 0x1fbf0234 0x0 0x2C>,
+			<0x0 0x1fbf0268 0x0 0x4>,
+			/* GPIO INT*/
+			<0x0 0x1fbf0208 0x0 0x0C>,
+			<0x0 0x1fbf027C 0x0 0x1C>,
+			/* PWM */
+			<0x0 0x1fbf0298 0x0 0x28>;
+	};
+
+	i2c@1fbf8000 {
+		compatible = "airoha,airoha-i2c";
+		reg = <0x0 0x1fbf8000 0x0 0x65>;
+		clock-frequency = <400000>;
+	};
+	i2c1@1fbf8100 {
+		compatible = "airoha,airoha-i2c";
+		reg = <0x0 0x1fbf8100 0x0 0x65>;
+		clock-frequency = <400000>;
+	};
+	airoha_trng@1faa1000 {
+		compatible = "airoha,airoha-trng";
+		reg = <0x0 0x1faa1000 0x0 0xc04>;
+		interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+	};
+	thermal_phy: thermal_phy@1efbd000 {
+		#thermal-sensor-cells = <0>;
+		compatible = "airoha,en7581-thermal_phy";		
+		reg = <0x0 0x1efbd000 0x0 0x0fff>; //ptp_thermal_ctrl
+		int_name = "ptp_therm";
+	};
+	uart1: serial@1fbf0000 {
+		compatible = "ns8250";
+		reg = <0x0 0x1fbf0000 0x0 0x30>;
+		reg-io-width = <4>;
+		reg-shift = <2>;
+		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
+		clock-frequency = <1843200>;
+		status = "okay";
+	};
+	thermal-zones {
+		cpu_thermal: cpu-thermal {
+			polling-delay-passive = <200>;
+			polling-delay = <1000>;
+			thermal-sensors = <&thermal_phy 0>;
+			trips {
+				cpu_passive: cpu-passive {
+					temperature = <125000>;
+					hysteresis = <0>;
+					type = "passive";
+				};
+			};
+		};
+	};
+	thermal_phy: thermal_phy@1efbd000 {
+		#thermal-sensor-cells = <0>;
+		compatible = "airoha,an7583-thermal_phy";		
+		reg = <0x0 0x1efbd000 0x0 0x0fff>; //ptp_thermal_ctrl
+		int_name = "ptp_therm";
+	};
+	crypto_eip93@1fb70000 {
+		compatible = "airoha,airoha-eip93";
+		reg = <0x0 0x1fb70000 0x0 0x804>;
+		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;			
+	};
+};

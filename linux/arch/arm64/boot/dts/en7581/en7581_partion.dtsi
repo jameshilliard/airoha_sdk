@@ -1,0 +1,39 @@
+﻿
+
+#include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+/ {
+	compatible = "econet,en7581", "airoha,en7581";
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		bootloader@0 {
+			label = "bootloader";
+			reg = <0x00000000 0x00080000>;
+		};
+		tclinux@80000 {
+			label = "tclinux";
+			reg = <0x00080000 0x03200000>;
+		};
+		tclinux_slave@2880000 {
+			label = "tclinux_slave";
+			reg = <0x03280000 0x03200000>;
+		};		
+		rootfs_data@5080000 {
+			label = "rootfs_data";
+			reg = <0x06480000 0x00800000>;
+		};
+		art@de80000 {
+			label = "art";
+			//art is located in flash end. if reg offset != ffffffff, it represents the actual offset
+			//else offset = flash_logic_size-reg_size(drivers/mtd/maps/tc3162-flash.c)
+			reg = <0xffffffff 0x00380000>;
+		};
+	};
+};
