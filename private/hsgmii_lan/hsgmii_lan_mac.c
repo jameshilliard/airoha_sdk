@@ -1431,6 +1431,16 @@ int hsgmii_lan_mac_tx(struct sk_buff *skb, struct net_device *dev)
 	}
 #endif
 
+	/* Pad packets shorter than the Ethernet minimum frame size. */
+	if (unlikely(skb->len < ETH_ZLEN)) {
+		if (skb_padto(skb, ETH_ZLEN)) {
+			hsgmii_p->xsiStat.outErrors++;
+			hsgmii_p->xsiStat.outDrops++;
+			return NETDEV_TX_OK;
+		}
+		skb_put(skb, ETH_ZLEN - skb->len);
+	}
+
 	update_xsi_sw_mib(hsgmii_p, skb, XSI_TX);
 
 
