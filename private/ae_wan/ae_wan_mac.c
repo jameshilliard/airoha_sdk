@@ -1250,6 +1250,16 @@ int ae_wan_mac_tx(struct sk_buff *skb, struct net_device *dev)
 		}
 #endif /* CONFIG_TP_IMAGE && INCLUDE_MULTICAST_VLAN */
 
+	/* Pad packets shorter than the Ethernet minimum frame size. */
+	if (unlikely(skb->len < ETH_ZLEN)) {
+		if (skb_padto(skb, ETH_ZLEN)) {
+			ae_wan_p->xsiStat.outErrors++;
+			ae_wan_p->xsiStat.outDrops++;
+			return NETDEV_TX_OK;
+		}
+		skb_put(skb, ETH_ZLEN - skb->len);
+	}
+
 	wan_to_lan(skb,0);
 	dump_skb(skb);
 	error = QDMA_API_TRANSMIT_PACKETS(ECNT_QDMA_WAN,skb,xsiTxMsg.txmsg0, xsiTxMsg.txmsg1, qdma_info);
